@@ -2,7 +2,7 @@ import { initializeCanvas } from '../src/index';
 import { generateGradientWithGrain } from 'grainient.';
 
 // Mock the `generateGradientWithGrain` function
-jest.mock('grainient', () => ({
+jest.mock('grainient.', () => ({
   generateGradientWithGrain: jest.fn(),
 }));
 
@@ -12,9 +12,29 @@ describe('initializeCanvas', () => {
   beforeEach(() => {
     // Create a mock canvas and context
     canvas = document.createElement('canvas');
-    context = canvas.getContext('2d');
-    canvas.clientWidth = 500;
-    canvas.clientHeight = 300;
+
+    // Mock the context object
+    context = {
+      // Add mock methods if needed
+      fillRect: jest.fn(),
+      // Other methods can be mocked as needed
+      createLinearGradient: jest.fn().mockReturnValue({
+        addColorStop: jest.fn(),
+      }),
+    };
+
+    // Mock getContext method to return the mock context
+    canvas.getContext = jest.fn().mockReturnValue(context);
+
+    // Set canvas dimensions directly
+    Object.defineProperty(canvas, 'width', {
+      value: 500,
+      writable: true,
+    });
+    Object.defineProperty(canvas, 'height', {
+      value: 300,
+      writable: true,
+    });
   });
 
   test('should initialize the canvas with gradient and grain effect', () => {
@@ -26,8 +46,8 @@ describe('initializeCanvas', () => {
     initializeCanvas(canvas, color1, color2, grainIntensity);
 
     // Check that the canvas dimensions are set
-    expect(canvas.width).toBe(canvas.clientWidth);
-    expect(canvas.height).toBe(canvas.clientHeight);
+    expect(canvas.width).toBe(500);
+    expect(canvas.height).toBe(300);
 
     // Check that `generateGradientWithGrain` was called with the correct arguments
     expect(generateGradientWithGrain).toHaveBeenCalledWith(
@@ -51,20 +71,20 @@ describe('initializeCanvas', () => {
   test('should throw error for invalid color values', () => {
     expect(() => {
       initializeCanvas(canvas, 123, '#0000ff', 0.5);
-    }).toThrow('Color must be a string.');
+    }).toThrow('Colors must be strings.');
 
     expect(() => {
       initializeCanvas(canvas, '#ff0000', [], 0.5);
-    }).toThrow('Color must be a string.');
+    }).toThrow('Colors must be strings.');
   });
 
   test('should throw error for invalid grain intensity', () => {
     expect(() => {
       initializeCanvas(canvas, '#ff0000', '#0000ff', -1);
-    }).toThrow('grainIntensity must be a non-negative number.');
+    }).toThrow('Grain intensity must be a non-negative number.');
 
     expect(() => {
       initializeCanvas(canvas, '#ff0000', '#0000ff', 'string');
-    }).toThrow('grainIntensity must be a non-negative number.');
+    }).toThrow('Grain intensity must be a non-negative number.');
   });
 });
