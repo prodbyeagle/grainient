@@ -16,7 +16,7 @@
   "author": "prodbyeagle",
   "license": "MIT",
   "dependencies": {
-    "grainient.": "^1.0.3",
+    "grainient.": "^1.0.4",
     "npm-check-updates": "^16.14.20"
   },
   "devDependencies": {
