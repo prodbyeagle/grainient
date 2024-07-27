@@ -69,15 +69,14 @@ describe("initializeCanvas", () => {
     canvas = document.createElement("canvas");
     canvas.width = 500;
     canvas.height = 300;
-    
-    // Mock getContext to return a valid context-like object
-    ctx = {
-      createLinearGradient: jest.fn(),
-      fillRect: jest.fn(),
-      putImageData: jest.fn(),
-    };
-    jest.spyOn(canvas, "getContext").mockReturnValue(ctx);
 
+    // Set up context and mock methods
+    ctx = canvas.getContext("2d");
+    jest.spyOn(ctx, "createLinearGradient").mockImplementation(() => ({
+      addColorStop: jest.fn(),
+    }));
+    jest.spyOn(ctx, "fillRect").mockImplementation(() => {});
+    jest.spyOn(ctx, "putImageData").mockImplementation(() => {});
     jest
       .spyOn(require("../src/index"), "generateGradientWithGrain")
       .mockImplementation(() => {});

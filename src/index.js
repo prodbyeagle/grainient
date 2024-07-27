@@ -66,9 +66,18 @@ function generateGradientWithGrain(
   ctx.putImageData(imageData, 0, 0);
 }
 
-function initializeCanvas(canvas, startColor, endColor, grainIntensity) {
+// Initializes the canvas with gradient and grain effect
+function initializeCanvas(canvas, color1, color2, grainIntensity) {
   if (!(canvas instanceof HTMLCanvasElement)) {
     throw new Error("The provided element is not an HTMLCanvasElement.");
+  }
+
+  if (typeof color1 !== "string" || typeof color2 !== "string") {
+    throw new Error("Colors must be strings.");
+  }
+
+  if (typeof grainIntensity !== "number" || grainIntensity < 0) {
+    throw new Error("Grain intensity must be a non-negative number.");
   }
 
   const ctx = canvas.getContext("2d");
@@ -76,15 +85,18 @@ function initializeCanvas(canvas, startColor, endColor, grainIntensity) {
     throw new Error("Could not retrieve context from the canvas element.");
   }
 
-  if (!(ctx instanceof CanvasRenderingContext2D)) {
-    throw new Error("The provided context is not a valid CanvasRenderingContext2D.");
-  }
+  // Set canvas dimensions based on client size
+  canvas.width = canvas.clientWidth;
+  canvas.height = canvas.clientHeight;
 
-  if (typeof grainIntensity !== 'number' || grainIntensity < 0) {
-    throw new Error("Grain intensity must be a non-negative number.");
-  }
-
-  generateGradientWithGrain(ctx, canvas.width, canvas.height, startColor, endColor, grainIntensity);
+  generateGradientWithGrain(
+    ctx,
+    canvas.width,
+    canvas.height,
+    color1,
+    color2,
+    grainIntensity
+  );
 }
 
 module.exports = {
