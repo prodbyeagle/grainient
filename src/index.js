@@ -1,169 +1,126 @@
 /**
- * Converts a HEX color code to RGB format.
- *
- * @param {string} hex - The HEX color code in the format "#RRGGBB".
- * @returns {Object} - An object with properties r, g, and b representing the red, green, and blue values.
- * @throws {Error} - Throws an error if the input is not a valid HEX color code.
+ * Converts a HEX color code to an RGB color object.
+ * @param {string} hex - The HEX color code (e.g., #ff0000).
+ * @returns {object} RGB color object with r, g, b properties.
+ * @throws {Error} Throws an error if the HEX code is invalid.
  */
-export function hexToRgb(hex) {
-  console.log("hexToRgb called with:", hex);
+function hexToRgb(hex) {
+    if (typeof hex !== 'string') {
+        throw new Error('HEX color code must be a string.');
+    }
 
-  if (typeof hex !== "string") {
-    throw new Error("HEX color code must be a string.");
-  }
-  if (!/^#[0-9A-Fa-f]{6}$/.test(hex)) {
-    throw new Error(
-      'Invalid HEX color code. It should be in the format "#RRGGBB".'
-    );
-  }
+    // Ensure the HEX code starts with '#' and is followed by exactly 6 hexadecimal digits
+    if (!/^#[0-9A-Fa-f]{6}$/.test(hex)) {
+        throw new Error('Invalid HEX color code. It should be in the format "#RRGGBB".');
+    }
 
-  const rgb = {
-    r: parseInt(hex.slice(1, 3), 16),
-    g: parseInt(hex.slice(3, 5), 16),
-    b: parseInt(hex.slice(5, 7), 16),
-  };
-
-  console.log("Converted RGB:", rgb);
-  return rgb;
+    return {
+        r: parseInt(hex.slice(1, 3), 16),
+        g: parseInt(hex.slice(3, 5), 16),
+        b: parseInt(hex.slice(5, 7), 16),
+    };
 }
 
 /**
- * Generates a gradient with a grain effect on a given 2D canvas context.
- *
- * @param {CanvasRenderingContext2D} ctx - The 2D rendering context of a canvas element.
+ * Generates a gradient with a grain effect and draws it on the canvas.
+ * @param {CanvasRenderingContext2D} ctx - The 2D rendering context of the canvas.
  * @param {number} width - The width of the canvas.
  * @param {number} height - The height of the canvas.
- * @param {string} color1 - The starting color of the gradient in HEX format.
- * @param {string} color2 - The ending color of the gradient in HEX format.
- * @param {number} grainIntensity - The intensity of the grain effect (non-negative number).
- * @param {number} angle - The angle of the gradient in degrees.
- * @param {string} type - The type of gradient ("linear" or "radial").
- * @throws {Error} - Throws an error if any of the parameters are invalid.
+ * @param {string} color1 - The start color (HEX).
+ * @param {string} color2 - The end color (HEX).
+ * @param {number} grainIntensity - The intensity of the grain effect.
+ * @throws {Error} Throws errors if any input parameters are invalid.
  */
-export function generateGradientWithGrain(
-  ctx,
-  width,
-  height,
-  color1,
-  color2,
-  grainIntensity,
-  angle = 0,
-  type = "linear"
-) {
-  console.log("generateGradientWithGrain called with:", {
-    width,
-    height,
-    color1,
-    color2,
-    grainIntensity,
-    angle,
-    type,
-  });
+function generateGradientWithGrain(ctx, width, height, color1, color2, grainIntensity) {
+    if (!(ctx instanceof CanvasRenderingContext2D)) {
+        throw new Error('The provided context is not a valid CanvasRenderingContext2D.');
+    }
 
-  // Create gradient
-  let gradient;
-  if (type === "linear") {
-    const x2 = width * Math.cos((angle * Math.PI) / 180);
-    const y2 = height * Math.sin((angle * Math.PI) / 180);
-    gradient = ctx.createLinearGradient(0, 0, x2, y2);
-  } else {
-    gradient = ctx.createRadialGradient(
-      width / 2,
-      height / 2,
-      0,
-      width / 2,
-      height / 2,
-      Math.sqrt(width ** 2 + height ** 2) / 2
-    );
-  }
+    if (typeof width !== 'number' || width <= 0) {
+        throw new Error('Width must be a positive number.');
+    }
 
-  gradient.addColorStop(0, color1);
-  gradient.addColorStop(1, color2);
+    if (typeof height !== 'number' || height <= 0) {
+        throw new Error('Height must be a positive number.');
+    }
 
-  // Fill gradient
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, width, height);
+    if (typeof color1 !== 'string' || typeof color2 !== 'string') {
+        throw new Error('Colors must be strings.');
+    }
 
-  // Apply grain effect
-  const imageData = ctx.createImageData(width, height);
-  const data = imageData.data;
+    if (typeof grainIntensity !== 'number' || grainIntensity < 0) {
+        throw new Error('Grain intensity must be a non-negative number.');
+    }
 
-  for (let i = 0; i < data.length; i += 4) {
+    const imageData = ctx.createImageData(width, height);
+    const data = imageData.data;
+
+    // Convert HEX colors to RGB
+    const startColor = hexToRgb(color1);
+    const endColor = hexToRgb(color2);
+
+    // Generate gradient
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            const t = x / width; // Gradient position
+            const r = Math.floor(startColor.r * (1 - t) + endColor.r * t);
+            const g = Math.floor(startColor.g * (1 - t) + endColor.g * t);
+            const b = Math.floor(startColor.b * (1 - t) + endColor.b * t);
+            const index = (y * width + x) * 4;
+
+            data[index] = r;     // Red
+            data[index + 1] = g; // Green
+            data[index + 2] = b; // Blue
+            data[index + 3] = 255; // Alpha (opaque)
+        }
+    }
+
     // Apply grain effect
-    data[i] += (Math.random() - 0.5) * grainIntensity; // red
-    data[i + 1] += (Math.random() - 0.5) * grainIntensity; // green
-    data[i + 2] += (Math.random() - 0.5) * grainIntensity; // blue
-  }
+    for (let i = 0; i < data.length; i += 4) {
+        const grain = Math.random() * grainIntensity - (grainIntensity / 2);
+        data[i] = Math.min(255, Math.max(0, data[i] + grain));        // Red
+        data[i + 1] = Math.min(255, Math.max(0, data[i + 1] + grain)); // Green
+        data[i + 2] = Math.min(255, Math.max(0, data[i + 2] + grain)); // Blue
+    }
 
-  // Limit the color values to the range [0, 255]
-  for (let i = 0; i < data.length; i += 4) {
-    data[i] = Math.max(0, Math.min(255, data[i])); // red
-    data[i + 1] = Math.max(0, Math.min(255, data[i + 1])); // green
-    data[i + 2] = Math.max(0, Math.min(255, data[i + 2])); // blue
-  }
-
-  ctx.putImageData(imageData, 0, 0);
-  console.log("Gradient and grain effect applied.");
+    ctx.putImageData(imageData, 0, 0);
 }
 
 /**
- * Initializes the canvas with a gradient and grain effect.
- *
- * @param {HTMLCanvasElement} canvas - The canvas element to be initialized.
- * @param {string} color1 - The starting color of the gradient in HEX format.
- * @param {string} color2 - The ending color of the gradient in HEX format.
- * @param {number} grainIntensity - The intensity of the grain effect (non-negative number).
- * @param {number} angle - The angle of the gradient in degrees.
- * @param {string} type - The type of gradient ("linear" or "radial").
- * @throws {Error} - Throws an error if the canvas is not an HTMLCanvasElement or if the context cannot be retrieved.
+ * Initializes a canvas with a gradient and optional grain effect.
+ * @param {HTMLCanvasElement} canvas - The canvas element to initialize.
+ * @param {string} color1 - The start color (HEX).
+ * @param {string} color2 - The end color (HEX).
+ * @param {number} grainIntensity - The intensity of the grain effect.
+ * @throws {Error} Throws errors if invalid input values are provided.
  */
-export function initializeCanvas(
-  canvas,
-  color1,
-  color2,
-  grainIntensity,
-  angle = 0,
-  type = "linear"
-) {
-  if (!(canvas instanceof HTMLCanvasElement)) {
-    throw new Error("The provided element is not an HTMLCanvasElement.");
-  }
+function initializeCanvas(canvas, color1, color2, grainIntensity) {
+    if (!(canvas instanceof HTMLCanvasElement)) {
+        throw new Error('The provided element is not an HTMLCanvasElement.');
+    }
 
-  if (typeof color1 !== "string" || typeof color2 !== "string") {
-    throw new Error("Colors must be strings.");
-  }
+    if (typeof color1 !== 'string' || typeof color2 !== 'string') {
+        throw new Error('Colors must be strings.');
+    }
 
-  if (typeof grainIntensity !== "number" || grainIntensity < 0) {
-    throw new Error("Grain intensity must be a non-negative number.");
-  }
+    if (typeof grainIntensity !== 'number' || grainIntensity < 0) {
+        throw new Error('Grain intensity must be a non-negative number.');
+    }
 
-  if (typeof angle !== "number") {
-    throw new Error("Angle must be a number.");
-  }
+    const ctx = canvas.getContext('2d');
+    if (!ctx) {
+        throw new Error('Could not retrieve context from the canvas element.');
+    }
 
-  if (type !== "linear" && type !== "radial") {
-    throw new Error('Gradient type must be "linear" or "radial".');
-  }
+    // Set canvas dimensions based on client size
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
 
-  const ctx = canvas.getContext("2d");
-  if (!ctx) {
-    throw new Error("Could not retrieve context from the canvas element.");
-  }
-
-  // Ensure the width and height are positive
-  if (canvas.width <= 0 || canvas.height <= 0) {
-    throw new Error("Width and height must be positive numbers.");
-  }
-
-  // Generate the gradient and apply grain effect
-  generateGradientWithGrain(
-    ctx,
-    canvas.width,
-    canvas.height,
-    color1,
-    color2,
-    grainIntensity,
-    angle,
-    type
-  );
+    // Generate gradient and apply grain effect
+    generateGradientWithGrain(ctx, canvas.width, canvas.height, color1, color2, grainIntensity);
 }
+
+module.exports = {
+    initializeCanvas,
+    generateGradientWithGrain
+};
