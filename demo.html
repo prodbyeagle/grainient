@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gradient with Grain Effect</title>
+    <style>
+      /* Reset some default styles */
+      body,
+      h1,
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Dark mode and modern UI */
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #121212;
+        color: #e0e0e0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 1rem;
+        box-sizing: border-box;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        max-width: 1200px;
+        width: 100%;
+        padding: 1.5rem;
+        background: #1e1e1e;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+      }
+
+      .canvas-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-height: 600px; /* Max height for canvas */
+        overflow: hidden;
+        background-color: #333;
+        border: 2px solid #444;
+        border-radius: 8px;
+      }
+
+      canvas {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensure the canvas scales properly */
+        background-color: #333;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+      }
+
+      .controls {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        background-color: #2a2a2a;
+        padding: 1.5rem;
+        border-radius: 12px;
+        border: 2px solid #555;
+      }
+
+      .control {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      label {
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      input[type="color"],
+      input[type="range"] {
+        width: 100%;
+      }
+
+      input[type="color"] {
+        height: 3rem;
+        border: none;
+        border-radius: 6px;
+        background-color: #444;
+        cursor: pointer;
+      }
+
+      input[type="range"] {
+        height: 2rem;
+      }
+
+      span {
+        display: block;
+        font-size: 1rem;
+        color: #ddd;
+        text-align: center;
+      }
+
+      button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s, transform 0.2s;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      button:active {
+        transform: scale(0.98);
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+          align-items: center;
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Grainient.</h1>
+      <h3>Create a Gradient with some Grain.</h3>
+      <div class="canvas-container">
+        <canvas id="gradientCanvas"></canvas>
+      </div>
+      <div class="controls">
+        <div class="control">
+          <label for="color1">Start Color:</label>
+          <input type="color" id="color1" value="#ff0000" />
+        </div>
+        <div class="control">
+          <label for="color2">End Color:</label>
+          <input type="color" id="color2" value="#0000ff" />
+        </div>
+        <div class="control">
+          <label for="grainAmount">Grain Intensity:</label>
+          <input type="range" id="grainAmount" min="0" max="50" value="10" />
+          <span id="grainAmountValue">10</span>
+        </div>
+        <button id="applyButton">Apply Changes</button>
+        <button id="resetButton">Reset</button>
+        <button id="saveButton">Save Image</button>
+      </div>
+    </div>
+    <script type="module">
+      import { generateGradientWithGrain } from "https://cdn.jsdelivr.net/npm/grainient.@1.0.3/src/index.js";
+
+      const canvas = document.getElementById("gradientCanvas");
+      const ctx = canvas.getContext("2d");
+      const color1Input = document.getElementById("color1");
+      const color2Input = document.getElementById("color2");
+      const grainAmountInput = document.getElementById("grainAmount");
+      const grainAmountValueSpan = document.getElementById("grainAmountValue");
+      const canvasContainer = document.querySelector(".canvas-container");
+
+      function updateCanvas() {
+        const color1 = color1Input.value;
+        const color2 = color2Input.value;
+        const grainIntensity = parseInt(grainAmountInput.value);
+
+        grainAmountValueSpan.textContent = grainIntensity;
+        generateGradientWithGrain(
+          ctx,
+          canvas.width,
+          canvas.height,
+          color1,
+          color2,
+          grainIntensity
+        );
+      }
+
+      function saveImage() {
+        const width = 1920;
+        const height = 1080;
+        const canvasCopy = document.createElement("canvas");
+        canvasCopy.width = width;
+        canvasCopy.height = height;
+        const ctxCopy = canvasCopy.getContext("2d");
+        ctxCopy.drawImage(canvas, 0, 0, width, height);
+
+        const link = document.createElement("a");
+        link.href = canvasCopy.toDataURL("image/png");
+        link.download = "gradient.png";
+        link.click();
+      }
+
+      function resetControls() {
+        color1Input.value = "#ff0000";
+        color2Input.value = "#0000ff";
+        grainAmountInput.value = 10;
+        grainAmountValueSpan.textContent = grainAmountInput.value;
+        updateCanvas();
+      }
+
+      // Debounced update function
+      const updateCanvasDebounced = debounce(updateCanvas, 200);
+
+      // Event listeners
+      color1Input.addEventListener("input", updateCanvasDebounced);
+      color2Input.addEventListener("input", updateCanvasDebounced);
+      grainAmountInput.addEventListener("input", updateCanvasDebounced);
+      document
+        .getElementById("applyButton")
+        .addEventListener("click", updateCanvas);
+      document
+        .getElementById("resetButton")
+        .addEventListener("click", resetControls);
+      document
+        .getElementById("saveButton")
+        .addEventListener("click", saveImage);
+
+      // Debounce function
+      function debounce(fn, delay) {
+        let timeoutId;
+        return function (...args) {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => fn.apply(this, args), delay);
+        };
+      }
+
+      // Initialize canvas with default values
+      updateCanvas();
+    </script>
+  </body>
+</html>
