@@ -1,15 +1,13 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/index.ts", // Der Einstiegspunkt deiner Library
+  entry: "./src/index.ts", // Dein Haupt TypeScript-Dateipfad
   output: {
-    filename: "grainient.js", // Name der gebauten Datei
+    filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
-    clean: true, // Entfernt alte Builds
-    // Wir benötigen hier keine `library`-Option für ES-Module
-    // module: 'es6' ist hier nicht notwendig, weil wir `output.module: true` verwenden
-    // libraryTarget: 'module' funktioniert nur für UMD-Module.
-    // Es wird nicht für ES-Modul-Konfigurationen benötigt.
+    library: "YourLibraryName", // Name deines exportierten Moduls
+    libraryTarget: "umd", // Universal Module Definition für verschiedene Module
+    globalObject: "this", // Benötigt, um Bibliotheken in Web und Node.js kompatibel zu machen
   },
   resolve: {
     extensions: [".ts", ".js"],
@@ -23,8 +21,5 @@ module.exports = {
       },
     ],
   },
-  mode: "development", // Ändere auf 'production' für Produktion
-  experiments: {
-    outputModule: true, // Erlaubt ES-Module im Output
-  },
+  devtool: "source-map", // Ermöglicht Source Maps für Debugging
 };
