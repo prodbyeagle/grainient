@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grainient Gradient Examples</title>
+</head>
+<body>
+  <h1>Grainient Gradient Examples</h1>
+
+  <h2>Linear Gradient Example</h2>
+  <canvas id="linearCanvas" width="600" height="400" style="border: 1px solid #000;"></canvas>
+
+  <h2>Radial Gradient Example</h2>
+  <canvas id="radialCanvas" width="600" height="400" style="border: 1px solid #000;"></canvas>
+
+  <h2>Grain Effect Example</h2>
+  <canvas id="grainCanvas" width="600" height="400" style="border: 1px solid #000;"></canvas>
+
+  <script type="module">
+    import Gradient from 'grainient.';
+
+    // Linear Gradient
+    const linearCanvas = document.getElementById('linearCanvas');
+    const linearOptions = {
+      colors: ['#ff0000', '#00ff00', '#0000ff'],
+      type: 'linear',
+      angle: 90
+    };
+    Gradient(linearCanvas, linearOptions);
+
+    // Radial Gradient
+    const radialCanvas = document.getElementById('radialCanvas');
+    const radialOptions = {
+      colors: ['#ff0000', '#00ff00', '#0000ff'],
+      type: 'radial'
+    };
+    Gradient(radialCanvas, radialOptions);
+
+    // Grain Effect
+    const grainCanvas = document.getElementById('grainCanvas');
+    const grainOptions = {
+      colors: ['#ff0000', '#00ff00', '#0000ff'],
+      grain: 30,
+      type: 'linear',
+      angle: 45
+    };
+    Gradient(grainCanvas, grainOptions);
+  </script>
+</body>
+</html>
