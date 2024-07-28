@@ -1,22 +1,32 @@
 /**
- * @typedef {Object} GradientOptions
- * @property {string[]} colors - An array of color stops for the gradient.
- * Must contain between 2 and 6 colors.
- * @property {number} [grain=0] - The intensity of the grain effect.
- * A value between 1 and 50. Defaults to 0 (no grain).
- * @property {"linear" | "radial"} [type="linear"] - The type of gradient to create.
- * Can be either 'linear' or 'radial'. Defaults to 'linear'.
- * @property {number} [angle=45] - The angle of the gradient for linear gradients, in degrees.
- * Defaults to 45 degrees.
- */
-
-/**
- * Defines the options for configuring a gradient.
- * @type {GradientOptions}
+ * Configuration options for a gradient.
  */
 export type GradientOptions = {
+  /**
+   * An array of color values to be used in the gradient.
+   * Each color should be a valid CSS color string.
+   */
   colors: string[];
+
+  /**
+   * The amount of noise or graininess to apply to the gradient.
+   * This value is optional.
+   * @default 0
+   */
   grain?: number;
+
+  /**
+   * The type of gradient to apply.
+   * Can be either 'linear' for a linear gradient or 'radial' for a radial gradient.
+   * This value is optional.
+   * @default 'linear'
+   */
   type?: "linear" | "radial";
+
+  /**
+   * The angle of the gradient, applicable only for linear gradients.
+   * This value is optional and should be a number representing the angle in degrees.
+   * @default 0
+   */
   angle?: number;
 };
