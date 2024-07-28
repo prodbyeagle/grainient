@@ -1,13 +1,15 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/index.ts",
+  entry: "./src/index.ts", // Der Einstiegspunkt deiner Library
   output: {
-    filename: "gradient.js",
+    filename: "grainient.js", // Name der gebauten Datei
     path: path.resolve(__dirname, "dist"),
-    library: "Gradient", // Macht die Bibliothek global verfügbar
-    libraryTarget: "umd", // Universal Module Definition
-    globalObject: "this", // Vermeidet Probleme mit `window` in Node.js-Umgebungen
+    clean: true, // Entfernt alte Builds
+    // Wir benötigen hier keine `library`-Option für ES-Module
+    // module: 'es6' ist hier nicht notwendig, weil wir `output.module: true` verwenden
+    // libraryTarget: 'module' funktioniert nur für UMD-Module.
+    // Es wird nicht für ES-Modul-Konfigurationen benötigt.
   },
   resolve: {
     extensions: [".ts", ".js"],
@@ -21,6 +23,8 @@ module.exports = {
       },
     ],
   },
-  devtool: 'source-map',
-  mode: "development", // Ändere auf 'production' für die Produktion
+  mode: "development", // Ändere auf 'production' für Produktion
+  experiments: {
+    outputModule: true, // Erlaubt ES-Module im Output
+  },
 };

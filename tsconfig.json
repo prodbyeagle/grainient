@@ -1,12 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "es6",
-    "strict": true,
-    "esModuleInterop": true,
+    "target": "es6", // Oder eine andere Version, die du benötigst
+    "module": "esnext", // Oder "commonjs", wenn du CommonJS-Module verwendest
+    "moduleResolution": "node", // Standard-Option für die Auflösung von Modulen
+    "esModuleInterop": true, // Ermöglicht die Verwendung von CommonJS-Modulen in ES-Modulen
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist"
+    "strict": true,
+    "baseUrl": "./src", // Falls du Pfad-Aliase verwendest
+    "paths": {
+      "*": ["*", "node_modules/*"] // Pfad-Aliase, falls benötigt
+    }
   },
-  "include": ["src/**/*", "dist/index.js"]
+  "include": ["src/**/*"], // Verzeichnis, das vom Compiler überwacht wird
+  "exclude": ["node_modules"] // Verzeichnis, das vom Compiler ausgeschlossen wird
 }
