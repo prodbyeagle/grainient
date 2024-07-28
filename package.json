@@ -1,5 +1,5 @@
 {
-  "name": "grainient.",
+  "name": "grainient-lib",
   "version": "2.0.2",
   "main": "src/index.js",
   "scripts": {
@@ -19,13 +19,13 @@
   "author": "prodbyeagle",
   "license": "ISC",
   "description": "A gradient library that also adds 'grain' effects to gradients.",
-  "homepage": "https://github.com/prodbyeagle/grainient.",
+  "homepage": "https://github.com/prodbyeagle/grainient-lib",
   "bugs": {
-    "url": "https://github.com/prodbyeagle/grainient./issues"
+    "url": "https://github.com/prodbyeagle/grainient-lib/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/prodbyeagle/grainient..git"
+    "url": "git+https://github.com/prodbyeagle/grainient-lib.git"
   },
   "engines": {
     "node": ">=16.0.0"
@@ -43,6 +43,6 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "grainient.": "^2.0.2"
+    "grainient-lib": "^2.0.2"
   }
 }

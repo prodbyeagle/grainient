@@ -1,7 +1,7 @@
 import Gradient from "../src/index";
 import { GradientOptions } from "../src/types";
 
-describe("grainient.", () => {
+describe("grainient-lib", () => {
   let canvas: HTMLCanvasElement;
   let ctx: CanvasRenderingContext2D;
 

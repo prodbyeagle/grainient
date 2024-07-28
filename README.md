@@ -1,24 +1,24 @@
-# grainient.
+# grainient-lib
 
-A simple and customizable grainient. for HTML5 canvas.
+A simple and customizable grainient-lib for HTML5 canvas.
 
 ## Installation
 
-You can install the grainient. via npm:
+You can install the grainient-lib via npm:
 
 
 ```bash
-npm install grainient.
+npm install grainient-lib
 ```
 
 ## Usage
 
 ### Basic Usage
 
-To use the grainient., import it and call the `Gradient` function with the desired options.
+To use the grainient-lib, import it and call the `Gradient` function with the desired options.
 
 ```javascript
-import Gradient from 'grainient.';
+import Gradient from 'grainient-lib';
 
 // Select the canvas element
 const canvas = document.getElementById('myCanvas');
@@ -53,7 +53,7 @@ Gradient(canvas, options);
 <body>
   <canvas id="myCanvas" width="600" height="400"></canvas>
   <script type="module">
-    import Gradient from 'grainient.';
+    import Gradient from 'grainient-lib';
 
     const canvas = document.getElementById('myCanvas');
     const options = {
@@ -79,7 +79,7 @@ Gradient(canvas, options);
 <body>
   <canvas id="myCanvas" width="600" height="400"></canvas>
   <script type="module">
-    import Gradient from 'grainient.';
+    import Gradient from 'grainient-lib';
 
     const canvas = document.getElementById('myCanvas');
     const options = {
@@ -106,7 +106,7 @@ The grain effect adds a noise-like texture to the gradient. You can adjust the i
 <body>
   <canvas id="myCanvas" width="600" height="400"></canvas>
   <script type="module">
-    import Gradient from 'grainient.';
+    import Gradient from 'grainient-lib';
 
     const canvas = document.getElementById('myCanvas');
     const options = {
