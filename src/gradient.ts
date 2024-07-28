@@ -1,7 +1,82 @@
 // src/gradient.ts
+/**
+ * Applies a "grain" effect to a CanvasRenderingContext2D.
+ *
+ * This function creates an additional canvas element filled with a semi-transparent black color.
+ * This effect is then overlaid onto the current CanvasRenderingContext2D to create a grainy appearance.
+ * The degree of graininess is controlled by the intensity parameter.
+ *
+ * @param ctx - The CanvasRenderingContext2D to which the grain effect will be applied.
+ * @param width - The width of the canvas on which the effect will be applied.
+ * @param height - The height of the canvas on which the effect will be applied.
+ * @param intensity - The intensity of the grain effect, ranging from 0 (no grain) to 100 (maximum grain).
+ *                    This value determines the transparency of the black overlay on the canvas.
+ *
+ * @throws {Error} If the context for the temporary grain canvas cannot be retrieved.
+ */
+export function applyGrain(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  intensity: number
+) {
+  // Set the global composite operation to 'overlay' to add the grain effect.
+  ctx.globalCompositeOperation = "overlay";
 
-import { GradientOptions } from "./types";
-import { applyGrain } from "./utils";
+  // Create a new canvas element for the grain effect.
+  const grainCanvas = document.createElement("canvas");
+  grainCanvas.width = width;
+  grainCanvas.height = height;
+  const grainCtx = grainCanvas.getContext("2d");
+
+  // Check if the context for the new canvas was successfully retrieved.
+  if (!grainCtx) {
+    throw new Error("Could not get context for grain canvas");
+  }
+
+  // Set the fill style of the grain canvas to a semi-transparent black color,
+  // where the intensity determines the alpha value of the color.
+  grainCtx.fillStyle = `rgba(0, 0, 0, ${intensity / 100})`;
+  grainCtx.fillRect(0, 0, width, height);
+
+  // Draw the grain canvas onto the original canvas.
+  ctx.drawImage(grainCanvas, 0, 0);
+}
+
+
+/**
+ * Configuration options for a gradient.
+ */
+export type GradientOptions = {
+  /**
+   * An array of color values to be used in the gradient.
+   * Each color should be a valid CSS color string.
+   */
+  colors: string[];
+
+  /**
+   * The amount of noise or graininess to apply to the gradient.
+   * This value is optional.
+   * @default 0
+   */
+  grain?: number;
+
+  /**
+   * The type of gradient to apply.
+   * Can be either 'linear' for a linear gradient or 'radial' for a radial gradient.
+   * This value is optional.
+   * @default 'linear'
+   */
+  type?: "linear" | "radial";
+
+  /**
+   * The angle of the gradient, applicable only for linear gradients.
+   * This value is optional and should be a number representing the angle in degrees.
+   * @default 0
+   */
+  angle?: number;
+};
+
 
 /**
  * Creates a gradient on the given canvas element.
