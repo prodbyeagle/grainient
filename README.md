@@ -8,6 +8,7 @@ A simple and customizable gradient and grain effect library for HTML5 canvas.
 
 ```bash
 npm install grainient
+```
 
 ## Usage
 
