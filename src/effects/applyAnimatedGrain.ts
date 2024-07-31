@@ -1,5 +1,3 @@
-import { applyGrain } from "./applyGrain";
-
 /**
  * Applies an animated grain effect to a CanvasRenderingContext2D.
  *

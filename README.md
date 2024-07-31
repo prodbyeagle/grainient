@@ -1,8 +1,10 @@
 # Grainient
 
-A simple and customizable gradient and grain effect library for HTML5 canvas.
+**Grainient** is a handy library for adding cool gradient and grain effects to your HTML5 canvas.
 
 ## Installation
+
+Get started by installing Grainient with npm:
 
 ```bash
 npm install @prodbyeagle/grainient
@@ -12,20 +14,20 @@ npm install @prodbyeagle/grainient
 
 ### Basic Usage
 
-To use the `grainient`, import it and call the `Gradient` function with the desired options.
+To use Grainient, import the functions and call the `Gradient` function with your desired options:
 
 ```javascript
 import { Gradient, applyGrain } from '@prodbyeagle/grainient';
 
-// Select the canvas element
+// Get your canvas element
 const canvas = document.getElementById('myCanvas');
 
-// Define gradient options
+// Set up your gradient options
 const options = {
-  colors: ['#ff0000', '#00ff00', '#0000ff'], // min: 2, max: 8
-  grain: 20,  // Optional: add grain effect with intensity between 1 and 50
+  colors: ['#ff0000', '#00ff00', '#0000ff'], // Minimum 2, maximum 8 colors
+  grain: 20,  // Optional: Add grain effect with intensity between 0 and 50
   type: 'linear',  // Optional: 'linear' or 'radial'
-  angle: 45  // Optional: angle in degrees (default is 45 for linear gradients)
+  angle: 45  // Optional: Angle in degrees (default is 45 for linear gradients)
 };
 
 // Apply the gradient
@@ -34,10 +36,10 @@ Gradient(canvas, options);
 
 ### Gradient Types
 
-- **Linear Gradient**: Gradients that transition along a straight line.
-- **Radial Gradient**: Gradients that radiate outward from a central point.
+- **Linear Gradient**: Smooth transition along a straight line.
+- **Radial Gradient**: Transitions from a central point outward.
 
-### Example Code
+### Examples
 
 #### Linear Gradient Example
 
@@ -92,40 +94,29 @@ Gradient(canvas, options);
 
 ### Adding Grain Effect
 
-The grain effect adds a noise-like texture to the gradient. You can adjust the intensity from 1 to 50.
+You can add a grainy texture to your gradient using the `applyGrain` function:
 
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Grain Effect Example</title>
-</head>
-<body>
-  <canvas id="myCanvas" class="canvas-container"></canvas>
-  <script type="module">
-    import { Gradient, applyGrain } from '@prodbyeagle/grainient';
+```javascript
+import { applyGrain } from '@prodbyeagle/grainient';
 
-    const canvas = document.getElementById('myCanvas');
-    const options = {
-      colors: ['#ff0000', '#00ff00', '#0000ff'],
-      grain: 30,  // Add grain effect with intensity of 30
-      type: 'linear',
-      angle: 45
-    };
+const canvas = document.getElementById('myCanvas');
+const ctx = canvas.getContext('2d');
 
-    Gradient(canvas, options);
-    applyGrain(canvas.getContext('2d'), canvas.width, canvas.height, 30);
-  </script>
-</body>
-</html>
+if (ctx) {
+  applyGrain(ctx, canvas.width, canvas.height, 20); // Intensity from 0 to 50
+}
 ```
 
 ## Options
 
-- `colors`: Array of color strings (e.g., `['#ff0000', '#00ff00']`). Must contain between 2 and 8 colors.
-- `grain` (optional): Intensity of the grain effect (integer between 1 and 50). Default is `0` (no grain).
-- `type` (optional): Type of gradient. Can be `'linear'` or `'radial'`. Default is `'linear'`.
-- `angle` (optional): Angle in degrees for linear gradients (default is `45`).
+- **`colors`**: An array of color strings (e.g., `['#ff0000', '#00ff00']`). Must have between 2 and 8 colors.
+- **`grain`** (optional): Intensity of the grain effect (integer from 0 to 50). Default is `0` (no grain).
+- **`type`** (optional): Gradient type. Can be `'linear'` or `'radial'`. Default is `'linear'`.
+- **`angle`** (optional): Angle for linear gradients in degrees (default is `45`).
+
+## Demo
+
+Check out a live demo of Grainient in action here: [Grainient Demo](https://prodbyeagle.github.io/grainient/#try-it). Play around with the settings and see how Grainient works!
 
 ## License
 
@@ -133,5 +124,6 @@ This project is licensed under the MIT License.
 
 ## Author
 
-```
 Created by @prodbyeagle 🦅
+
+---
