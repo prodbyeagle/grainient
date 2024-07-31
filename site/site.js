@@ -145,7 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function randomizeSettings() {
-
     const grainIntensity = Math.floor(Math.random() * 26);
     document.getElementById("grainIntensity").value = grainIntensity;
 
@@ -231,4 +230,53 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize background circles and handle scroll event
   generateRandomCircles();
   window.addEventListener("scroll", handleScroll);
+
+  document.getElementById("copyButton").addEventListener("click", () => {
+    // Get the code element
+    const codeElement = document.getElementById("codeBlock");
+    const copyButton = document.getElementById("copyButton");
+
+    // Copy the text content to the clipboards
+    navigator.clipboard
+      .writeText(codeElement.textContent.trim())
+      .then(() => {
+        // Change button text and color
+        copyButton.textContent = "Copied!";
+        copyButton.disabled = true;
+
+        // Reset button after 3 seconds
+        setTimeout(() => {
+          copyButton.textContent = "Copy";
+          copyButton.disabled = false;
+        }, 3000);
+      })
+      .catch((err) => {
+        console.error("Failed to copy text: ", err);
+      });
+  });
+
+  const items = Array.from(document.querySelectorAll(".usage-item"));
+  let currentIndex = 0;
+
+  function showNextItem() {
+    // Verstecke alle Elemente
+    items.forEach((item) => {
+      item.classList.remove("show");
+      item.classList.add("hidden");
+    });
+
+    // Zeige das aktuelle Element an
+    const currentItem = items[currentIndex];
+    currentItem.classList.remove("hidden");
+    currentItem.classList.add("show");
+
+    // Gehe zum nächsten Index
+    currentIndex = (currentIndex + 1) % items.length;
+
+    // Zeige das nächste Element nach einer Verzögerung
+    setTimeout(showNextItem, 3000); // Zeige das nächste Element alle 3 Sekunden
+  }
+
+  // Starte den Zyklus
+  showNextItem();
 });

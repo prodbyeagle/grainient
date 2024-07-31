@@ -28,7 +28,7 @@ body {
   padding: 0.5rem 1rem; /* Innenabstand */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Schatten */
   backdrop-filter: blur(3rem); /* Blur-Effekt */
-  z-index: 5;
+  z-index: 1;
   display: flex;
   justify-content: center; /* Zentriert die Navigation */
 }
@@ -197,4 +197,56 @@ button:disabled {
   background-color: #4a5568; /* Dunklerer Hintergrund, wenn deaktiviert */
   cursor: not-allowed; /* Zeigt an, dass der Button nicht klickbar ist */
   opacity: 0.6; /* Reduziere die Deckkraft, um den deaktivierten Zustand anzuzeigen */
+}
+
+/* Container Style */
+#usage-container {
+  position: relative;
+  max-width: 600px; /* Setze eine maximale Breite für den Container */
+  max-height: 400px; /* Setze eine maximale Höhe für den Container */
+  margin: 0 auto; /* Zentriere den Container horizontal */
+}
+
+/* Hidden Class */
+.hidden {
+  display: none;
+}
+
+/* Container für Usage Items */
+#usage-container {
+  position: relative;
+  width: 80vw; /* Breite des Containers relativ zur Ansichtsbreite */
+  max-width: 800px; /* Maximale Breite für größere Bildschirme */
+  height: 60vh; /* Höhe des Containers relativ zur Ansichtshöhe */
+  max-height: 500px; /* Maximale Höhe für größere Bildschirme */
+  margin: 0 auto; /* Zentriere den Container horizontal */
+}
+
+/* Usage Item Style */
+.usage-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease, transform 1s ease;
+  display: flex;
+  justify-content: center; /* Zentriert das Bild horizontal */
+  align-items: center; /* Zentriert das Bild vertikal */
+}
+
+/* Show Class */
+.usage-item.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.05); /* Sanfter Zoom-Effekt */
+}
+
+/* Bild Style */
+.usage-item img {
+  max-width: 90%; /* Maximal 90% der Container-Breite */
+  max-height: 90%; /* Maximal 90% der Container-Höhe */
+  object-fit: contain; /* Behalte das Bildverhältnis bei und stelle sicher, dass es vollständig sichtbar ist */
+  border-radius: 0.5rem; /* Ecken-Rundung */
 }

@@ -12,6 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://prodbyeagle.github.io/grainient/site/site.css" />
   </head>
   <body>
@@ -37,7 +38,10 @@
       <!-- Hero Section -->
       <section class="py-20">
         <div class="container mx-auto text-center">
-          <h1 class="headline text-4xl font-bold mb-4">
+          <h1 class="text-6xl font-extrabold my-12">
+            grainient
+          </h1>
+          <h1 class="text-3xl font-medium mb-4 italic">
             Transform Your Canvas with Stunning Gradients
           </h1>
           <p class="text-xl mb-6">
@@ -48,6 +52,29 @@
             class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-6 rounded-lg text-lg transition duration-300"
             >Try It Now</a
           >
+        </div>
+      </section>
+
+      <section class="py-20">
+        <div class="container mx-auto text-center">
+          <h2 class="headline text-3xl font-bold mb-8 text-white">Install The Library</h2>
+          <p class="text-xl mb-6 text-gray-300">
+            To get started with the gradient library, run the following command:
+          </p>
+          <div class="relative bg-gray-800 border border-gray-700 rounded-lg p-1 mx-auto w-96 group">
+            <pre class="whitespace-pre-line text-sm text-gray-200">
+<code id="codeBlock" class="font-mono">
+  npm install <span class="text-blue-400">@prodbyeagle/grainient</span>
+</code>
+            </pre>
+            <button
+              id="copyButton"
+              class="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white font-bold py-1 px-3 rounded transition-all duration-200 opacity-0 group-hover:opacity-100"
+              title="Copy to clipboard"
+            >
+              Copy
+            </button>
+          </div>
         </div>
       </section>
 
@@ -87,6 +114,40 @@
           </div>
         </div>
       </section>
+
+<!-- Usage Section -->
+<!-- <section id="usage" class="py-20 bg-gray-900">
+  <div class="container mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-8 text-white">Usage</h2>
+    <div id="usage-container" class="relative h-svh w-svh mx-auto">
+      Basic Usage
+      <div id="usage-1" class="usage-item bg-gray-800 border border-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 relative hidden">
+        <img src="./site/images/Basic.png" alt="Basic Usage Example" class="rounded-lg">
+        <div class="absolute bottom-4 left-4 text-white font-semibold text-lg bg-gray-800 bg-opacity-70 p-2 rounded">
+          Basic Usage
+        </div>
+      </div>
+      <div id="usage-2" class="usage-item bg-gray-800 border border-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 relative hidden">
+        <img src="./site/images/demo.html.png" alt="Linear Gradient Example" class="rounded-lg">
+        <div class="absolute bottom-4 left-4 text-white font-semibold text-lg bg-gray-800 bg-opacity-70 p-2 rounded">
+          Linear Gradient
+        </div>
+      </div>
+      <div id="usage-3" class="usage-item bg-gray-800 border border-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 relative hidden">
+        <img src="./site/images/radial.png" alt="Radial Gradient Example" class="rounded-lg">
+        <div class="absolute bottom-4 left-4 text-white font-semibold text-lg bg-gray-800 bg-opacity-70 p-2 rounded">
+          Radial Gradient
+        </div>
+      </div>
+      <div id="usage-4" class="usage-item bg-gray-800 border border-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 relative hidden">
+        <img src="./site/images/applyGrain.png" alt="Adding Grain Effect" class="rounded-lg">
+        <div class="absolute bottom-4 left-4 text-white font-semibold text-lg bg-gray-800 bg-opacity-70 p-2 rounded">
+          Adding Grain Effect
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
 
       <!-- About Section -->
       <section id="about" class="py-20">
