@@ -1,31 +1,29 @@
-# grainient
+# Grainient
 
-A simple and customizable grainient for HTML5 canvas.
+A simple and customizable gradient and grain effect library for HTML5 canvas.
 
 ## Installation
 
-You can install the grainient via npm:
-
+### **Warning:** The package `@prodbyeagle/grainient` will be renamed to `grainient`. If you encounter deprecation issues with `@prodbyeagle/grainient`, please use `grainient` by running:
 
 ```bash
 npm install grainient
-```
 
 ## Usage
 
 ### Basic Usage
 
-To use the grainient, import it and call the `Gradient` function with the desired options.
+To use the `grainient`, import it and call the `Gradient` function with the desired options.
 
 ```javascript
-import Gradient from 'grainient';
+import { Gradient, applyGrain } from '@prodbyeagle/grainient';
 
 // Select the canvas element
 const canvas = document.getElementById('myCanvas');
 
 // Define gradient options
 const options = {
-  colors: ['#ff0000', '#00ff00', '#0000ff'],
+  colors: ['#ff0000', '#00ff00', '#0000ff'], // min: 2, max: 8
   grain: 20,  // Optional: add grain effect with intensity between 1 and 50
   type: 'linear',  // Optional: 'linear' or 'radial'
   angle: 45  // Optional: angle in degrees (default is 45 for linear gradients)
@@ -51,9 +49,9 @@ Gradient(canvas, options);
   <title>Linear Gradient Example</title>
 </head>
 <body>
-  <canvas id="myCanvas" width="600" height="400"></canvas>
+  <canvas id="myCanvas" class="canvas-container"></canvas>
   <script type="module">
-    import Gradient from 'grainient';
+    import { Gradient } from '@prodbyeagle/grainient';
 
     const canvas = document.getElementById('myCanvas');
     const options = {
@@ -77,9 +75,9 @@ Gradient(canvas, options);
   <title>Radial Gradient Example</title>
 </head>
 <body>
-  <canvas id="myCanvas" width="600" height="400"></canvas>
+  <canvas id="myCanvas" class="canvas-container"></canvas>
   <script type="module">
-    import Gradient from 'grainient';
+    import { Gradient } from '@prodbyeagle/grainient';
 
     const canvas = document.getElementById('myCanvas');
     const options = {
@@ -104,9 +102,9 @@ The grain effect adds a noise-like texture to the gradient. You can adjust the i
   <title>Grain Effect Example</title>
 </head>
 <body>
-  <canvas id="myCanvas" width="600" height="400"></canvas>
+  <canvas id="myCanvas" class="canvas-container"></canvas>
   <script type="module">
-    import Gradient from 'grainient';
+    import { Gradient, applyGrain } from '@prodbyeagle/grainient';
 
     const canvas = document.getElementById('myCanvas');
     const options = {
@@ -117,6 +115,7 @@ The grain effect adds a noise-like texture to the gradient. You can adjust the i
     };
 
     Gradient(canvas, options);
+    applyGrain(canvas.getContext('2d'), canvas.width, canvas.height, 30);
   </script>
 </body>
 </html>
@@ -124,7 +123,7 @@ The grain effect adds a noise-like texture to the gradient. You can adjust the i
 
 ## Options
 
-- `colors`: Array of color strings (e.g., `['#ff0000', '#00ff00']`). Must contain between 2 and 6 colors.
+- `colors`: Array of color strings (e.g., `['#ff0000', '#00ff00']`). Must contain between 2 and 8 colors.
 - `grain` (optional): Intensity of the grain effect (integer between 1 and 50). Default is `0` (no grain).
 - `type` (optional): Type of gradient. Can be `'linear'` or `'radial'`. Default is `'linear'`.
 - `angle` (optional): Angle in degrees for linear gradients (default is `45`).
@@ -136,5 +135,4 @@ This project is licensed under the MIT License.
 ## Author
 
 Created by prodbyeagle
-
 ```
