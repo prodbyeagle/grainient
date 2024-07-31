@@ -30,5 +30,8 @@
     "ts-loader": "^9.5.1",
     "typescript": "^5.5.4",
     "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@prodbyeagle/grainient": "^3.0.1"
   }
 }

@@ -1,4 +1,4 @@
-import { Gradient, applyGrain } from "../dist/esm/index.js";
+import { Gradient, applyGrain } from "@prodbyeagle/grainient";
 
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("testCanvas");

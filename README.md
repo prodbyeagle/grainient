@@ -4,8 +4,6 @@ A simple and customizable gradient and grain effect library for HTML5 canvas.
 
 ## Installation
 
-### **Warning:** The package `@prodbyeagle/grainient` will be renamed to `grainient`. If you encounter deprecation issues with `@prodbyeagle/grainient`, please use `grainient` by running:
-
 ```bash
 npm install @prodbyeagle/grainient
 ```
@@ -135,5 +133,5 @@ This project is licensed under the MIT License.
 
 ## Author
 
-Created by prodbyeagle
 ```
+Created by @prodbyeagle 🦅
