@@ -7,21 +7,20 @@
  * @param intensity - The intensity of the grain effect, ranging from 0 (no grain) to 50 (maximum grain).
  */
 export function applyGrain(
-  ctx: CanvasRenderingContext2D,
+  ctx: CanvasRenderingContext2D | null,
   width: number,
   height: number,
   intensity: number
 ) {
+  if (!ctx) return; // Return early if context is not available
+
   // Create a temporary canvas for the grain effect
   const grainCanvas = document.createElement("canvas");
   grainCanvas.width = width;
   grainCanvas.height = height;
   const grainCtx = grainCanvas.getContext("2d");
 
-  if (!grainCtx) {
-    console.error("Failed to get 2D context from grainCanvas.");
-    return;
-  }
+  if (!grainCtx) return; // Ensure the context is available
 
   // Create image data for the grain effect
   const imageData = grainCtx.createImageData(width, height);
@@ -37,7 +36,7 @@ export function applyGrain(
   grainCtx.putImageData(imageData, 0, 0);
 
   // Apply the grain effect to the target context
-  ctx.globalCompositeOperation = "overlay"; // Try other operations if needed
+  ctx.globalCompositeOperation = "overlay"; // Apply the grain effect
   ctx.drawImage(grainCanvas, 0, 0);
   ctx.globalCompositeOperation = "source-over"; // Reset operation to default
 }
