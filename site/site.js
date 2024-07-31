@@ -42,27 +42,72 @@ document.addEventListener("DOMContentLoaded", () => {
       .padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
   }
 
+  const MAX_COLORS = 8; // Maximale Anzahl an Farben
+
   function createColorInput(color = getRandomPastelColor()) {
     const container = document.createElement("div");
-    container.className = "color-picker flex items-center space-x-2 rounded-md";
+    container.className =
+      "color-picker relative rounded-lg p-2 flex items-center";
+
+    const colorBox = document.createElement("div");
+    colorBox.className = "w-full h-14 border border-gray-600 rounded-lg";
+    colorBox.style.backgroundColor = color;
 
     const input = document.createElement("input");
     input.type = "color";
     input.value = color;
+    input.className =
+      "absolute top-0 left-0 opacity-0 w-full h-full cursor-pointer";
 
     const removeButton = document.createElement("button");
     removeButton.innerHTML = "&times;";
     removeButton.className =
-      "hover:bg-red-500 hover:text-white text-red-300 text-xs p-1 rounded-full w-5 h-5 flex items-center justify-center transition duration-300 absolute top-1 right-1";
+      "absolute top-0 right-0 bg-red-500 text-white text-xs p-1 rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600 transition duration-300";
     removeButton.onclick = () => {
       container.remove();
+      updateColorInputLimit(); // Überprüfe, ob noch maximal 8 Farben vorhanden sind
     };
 
+    container.appendChild(colorBox);
     container.appendChild(input);
     container.appendChild(removeButton);
 
+    input.addEventListener("input", (event) => {
+      const newColor = event.target.value;
+      colorBox.style.backgroundColor = newColor;
+    });
+
     return container;
   }
+
+  // Funktion zur Aktualisierung des Button-Designs
+  function updateButtonStyle(button, isDisabled) {
+    if (isDisabled) {
+      button.style.backgroundColor = "#4a5568"; // Dunklerer Hintergrund, wenn deaktiviert
+      button.style.color = "#a0aec0"; // Hellerer Text, wenn deaktiviert
+      button.style.opacity = "0.6"; // Reduziere die Deckkraft
+    } else {
+      button.className =
+        "bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg transition duration-300";
+    }
+  }
+
+  function updateColorInputLimit() {
+    const colorInputs = document.querySelectorAll(
+      "#colorContainer .color-picker"
+    );
+    const addColorButton = document.getElementById("addColorButton");
+
+    if (colorInputs.length >= MAX_COLORS) {
+      updateButtonStyle(addColorButton, true); // Button deaktiviert
+      addColorButton.disabled = true;
+    } else {
+      updateButtonStyle(addColorButton, false); // Button aktiviert
+      addColorButton.disabled = false;
+    }
+  }
+
+  updateColorInputLimit();
 
   function applySettings() {
     const grainIntensity = parseInt(
@@ -100,6 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function randomizeSettings() {
+
     const grainIntensity = Math.floor(Math.random() * 26);
     document.getElementById("grainIntensity").value = grainIntensity;
 
@@ -109,11 +155,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const gradientAngle = Math.floor(Math.random() * 91);
     document.getElementById("gradientAngle").value = gradientAngle;
 
-    const numColors = Math.floor(Math.random() * 3) + 2;
+    const numColors = Math.min(Math.floor(Math.random() * 3) + 2, MAX_COLORS); // Begrenze die Anzahl der Farben auf MAX_COLORS
     colorContainer.innerHTML = "";
     for (let i = 0; i < numColors; i++) {
       colorContainer.appendChild(createColorInput());
     }
+
+    updateColorInputLimit(); // Überprüfe, ob das Limit erreicht ist
 
     applySettings();
   }
@@ -130,7 +178,13 @@ document.addEventListener("DOMContentLoaded", () => {
     .getElementById("randomizeButton")
     .addEventListener("click", randomizeSettings);
   document.getElementById("addColorButton").addEventListener("click", () => {
-    colorContainer.appendChild(createColorInput());
+    const colorInputs = document.querySelectorAll(
+      "#colorContainer .color-picker"
+    );
+    if (colorInputs.length < MAX_COLORS) {
+      colorContainer.appendChild(createColorInput());
+    }
+    updateColorInputLimit(); // Überprüfe, ob das Limit erreicht ist
   });
 
   initializeTryItSection(); // Initialize the Try It section with random settings
@@ -160,21 +214,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // // Parallax-Effekt beim Scrollen
-  // function handleScroll() {
-  //   const circles = document.querySelectorAll(".background-circles div");
-  //   circles.forEach((circle) => {
-  //     const speed = 0.125; // Geschwindigkeit des Parallax-Effekts
-  //     const yOffset = window.scrollY * speed; // Verwendung von scrollY anstelle von pageYOffset
+  // Parallax-Effekt beim Scrollen
+  function handleScroll() {
+    const circles = document.querySelectorAll(".background-circles div");
+    circles.forEach((circle) => {
+      const speed = 0.125; // Geschwindigkeit des Parallax-Effekts
+      const yOffset = window.scrollY * speed; // Verwendung von scrollY anstelle von pageYOffset
 
-  //     // Sanfte Anpassung der y-Position
-  //     circle.style.transform = `translate3d(${
-  //       circle.style.transform.split(",")[0].split("(")[1]
-  //     }, ${yOffset}px, 0)`;
-  //   });
-  // }
+      // Sanfte Anpassung der y-Position
+      circle.style.transform = `translate3d(${
+        circle.style.transform.split(",")[0].split("(")[1]
+      }, ${yOffset}px, 0)`;
+    });
+  }
 
   // Initialize background circles and handle scroll event
   generateRandomCircles();
-  // window.addEventListener("scroll", handleScroll);
+  window.addEventListener("scroll", handleScroll);
 });
