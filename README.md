@@ -15,7 +15,7 @@ npm install @prodbyeagle/grainient
 To use the `grainient`, import it and call the `Gradient` function with the desired options.
 
 ```javascript
-import { Gradient, applyGrain } from '@prodbyeagle/grainient';
+import { Gradient } from '@prodbyeagle/grainient';
 
 // Select the canvas element
 const canvas = document.getElementById('myCanvas');
