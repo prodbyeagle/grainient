@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "color-picker relative rounded-lg p-2 flex items-center";
 
     const colorBox = document.createElement("div");
-    colorBox.className = "w-full h-14 border border-gray-600 rounded-lg";
+    colorBox.className = "w-16 h-16 border border-gray-600 rounded-lg";
     colorBox.style.backgroundColor = color;
 
     const input = document.createElement("input");

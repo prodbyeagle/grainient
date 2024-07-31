@@ -23,11 +23,11 @@ body {
   transform: translateX(-50%); /* Zentriert die Navigation */
   width: calc(100% - 2rem); /* Breite anpassen */
   max-width: 1200px; /* Maximale Breite für große Bildschirme */
-  background-color: rgba(0, 0, 0, 0.7); /* Leicht durchsichtiger Hintergrund */
+  background-color: rgba(0, 0, 0, 0.8); /* Leicht durchsichtiger Hintergrund */
   border-radius: 15px; /* Pill-Design */
   padding: 0.5rem 1rem; /* Innenabstand */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Schatten */
-  backdrop-filter: blur(0.5rem); /* Blur-Effekt */
+  backdrop-filter: blur(3rem); /* Blur-Effekt */
   z-index: 5;
   display: flex;
   justify-content: center; /* Zentriert die Navigation */
@@ -154,18 +154,6 @@ button:hover {
 .content {
   position: relative;
   z-index: 1;
-}
-
-/* Color Picker Styles */
-.color-picker {
-  position: relative; /* Ermöglicht die absolute Positionierung des Remove Buttons */
-  background: #2d3748; /* Dunkler Hintergrund für die Farbauswahl */
-  border: 1px solid #4a5568; /* Dunkler Rand */
-  border-radius: 8px; /* Abgerundete Ecken */
-  padding: 0.5rem; /* Innenabstand */
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .color-picker input[type="color"] {
