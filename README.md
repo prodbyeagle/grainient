@@ -116,7 +116,7 @@ if (ctx) {
 
 ## Demo
 
-Check out a live demo of Grainient in action here: [Grainient Demo](https://prodbyeagle.github.io/grainient/#try-it). Play around with the settings and see how Grainient works!
+Check out a live demo of Grainient in action here: [Grainient Demo](https://prodbyeagle.github.io/grainient/). Play around with the settings and see how Grainient works!
 
 ## License
 
