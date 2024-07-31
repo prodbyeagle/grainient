@@ -3,194 +3,200 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>grainient</title>
+    <title>Clean Dark Design</title>
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
     <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
     />
     <link rel="stylesheet" href="./site/site.css" />
   </head>
-  <body class="bg-gray-900 text-white">
-    <!-- Navigation -->
-    <header class="bg-gray-800 py-4">
-      <nav class="container mx-auto flex items-center justify-between">
-        <a href="#" class="text-2xl font-bold text-white">grainient</a>
-        <ul class="flex space-x-4">
-          <li><a href="#features" class="hover:text-gray-400">Features</a></li>
-          <li><a href="#about" class="hover:text-gray-400">About</a></li>
-          <li><a href="#contact" class="hover:text-gray-400">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
+  <body>
+    <!-- Random Pastel Circles -->
+    <div class="background-circles" id="backgroundCircles"></div>
 
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-teal-500 to-blue-500 py-20">
-      <div class="container mx-auto text-center">
-        <h1 class="text-4xl font-bold mb-4">
-          Transform Your Canvas with Stunning Gradients
-        </h1>
-        <p class="text-xl mb-6">
-          Explore the power of gradients with our easy-to-use library.
-        </p>
-        <a
-          href="#try-it"
-          class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-6 rounded-lg text-lg duration-75 hover:underline"
-          >Try It Now</a
-        >
-      </div>
-    </section>
+    <!-- Content -->
+    <div class="content">
 
-    <!-- Features Section -->
-    <section id="features" class="py-20 bg-gray-800">
-      <div class="container mx-auto text-center">
-        <h2 class="text-3xl font-bold mb-8">Features</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-          <!-- Feature 1 -->
-          <div
-            class="bg-gray-900 p-4 rounded-lg glass-card transform transition-transform hover:-translate-y-2 hover:shadow-xl"
+
+      <!-- Navigation -->
+      <header class="header py-4">
+        <nav class="container mx-auto flex items-center justify-between">
+          <a href="#" class="text-2xl font-bold">grainient</a>
+          <ul class="nav-links hidden md:flex space-x-1">
+            <li><a href="#features" class="hover:text-gray-300">Features</a></li>
+            <li><a href="#about" class="hover:text-gray-300">About</a></li>
+            <li><a href="#try-it" class="hover:text-gray-300">Try</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Hero Section -->
+      <section class="py-20">
+        <div class="container mx-auto text-center">
+          <h1 class="headline text-4xl font-bold mb-4">
+            Transform Your Canvas with Stunning Gradients
+          </h1>
+          <p class="text-xl mb-6">
+            Explore the power of gradients with our easy-to-use library.
+          </p>
+          <a
+            href="#try-it"
+            class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-6 rounded-lg text-lg transition duration-300"
+            >Try It Now</a
           >
-            <img
-              src="https://raw.githubusercontent.com/prodbyeagle/grainient/93d120424bff26a505df7cb8bcb97105d100f6a6/site/images/GradientsDemo.png"
-              alt="Feature 1"
-              class="w-full h-40 object-cover mb-4 rounded-lg"
-            />
-            <h3 class="text-2xl font-semibold mb-2">Customizable Gradients</h3>
-            <p>
-              Apply gradients with various types and angles to enhance your
-              designs.
-            </p>
-          </div>
-          <!-- Feature 2 -->
-          <div
-            class="bg-gray-900 p-4 rounded-lg glass-card duration-75 transform transition-transform hover:-translate-y-2 hover:shadow-xl"
-          >
-            <img
-              src="https://raw.githubusercontent.com/prodbyeagle/grainient/93d120424bff26a505df7cb8bcb97105d100f6a6/site/images/GrainDemo.png"
-              alt="Feature 2"
-              class="w-full h-40 object-cover mb-4 rounded-lg"
-            />
-            <h3 class="text-2xl font-semibold mb-2">Clean Grain Effect</h3>
-            <p>
-              Add realistic and clean grain textures to your canvas with
-              adjustable intensity.
-            </p>
-          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20">
-      <div class="container mx-auto text-center">
-        <h2 class="text-3xl font-bold mb-8">About Us</h2>
-        <p class="text-xl mb-6">
-          Our library provides a simple and powerful way to create stunning
-          gradients and grain effects for your web projects. Whether you're
-          looking to enhance your designs with custom gradients or add dynamic
-          grain textures, we've got you covered.
-        </p>
-      </div>
-    </section>
-
-    <!-- Try It Section -->
-    <section id="try-it" class="bg-gray-800 py-20">
-      <div class="container mx-auto text-center px-4">
-        <h2 class="text-3xl font-bold mb-8">Try It Yourself</h2>
-        <p class="text-xl mb-6">
-          Experiment with our library and see how it can transform your canvas.
-          Use the interactive controls to customize gradients and grain effects.
-        </p>
-        <div
-          class="bg-gray-900 p-4 rounded-lg glass-card mx-auto w-full max-w-4xl"
-        >
-          <!-- Canvas Container -->
-          <div class="w-full flex justify-center items-center mb-6">
-            <div class="canvas-container">
-              <canvas
-                id="testCanvas"
-                class="border border-gray-600 rounded-lg"
-              ></canvas>
+      <!-- Features Section -->
+      <section id="features" class="py-20">
+        <div class="container mx-auto text-center">
+          <h2 class="headline text-3xl font-bold mb-8">Features</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+            <!-- Feature 1 -->
+            <div class="card p-4 rounded-lg shadow-lg">
+              <img
+                src="https://raw.githubusercontent.com/prodbyeagle/grainient/93d120424bff26a505df7cb8bcb97105d100f6a6/site/images/GradientsDemo.png"
+                alt="Feature 1"
+                class="w-full h-40 object-cover mb-4 rounded-lg"
+              />
+              <h3 class="text-2xl font-semibold mb-2">
+                Customizable Gradients
+              </h3>
+              <p>
+                Apply gradients with various types and angles to enhance your
+                designs.
+              </p>
+            </div>
+            <!-- Feature 2 -->
+            <div class="card p-4 rounded-lg shadow-lg">
+              <img
+                src="https://raw.githubusercontent.com/prodbyeagle/grainient/93d120424bff26a505df7cb8bcb97105d100f6a6/site/images/GrainDemo.png"
+                alt="Feature 2"
+                class="w-full h-40 object-cover mb-4 rounded-lg"
+              />
+              <h3 class="text-2xl font-semibold mb-2">Clean Grain Effect</h3>
+              <p>
+                Add realistic and clean grain textures to your canvas with
+                adjustable intensity.
+              </p>
             </div>
           </div>
-          <!-- Settings Container -->
-          <div class="flex flex-col space-y-4">
-            <div
-              class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0"
-            >
-              <label class="flex flex-col flex-1">
-                <span class="text-gray-300">Gradient Type:</span>
-                <select
-                  id="gradientType"
-                  class="mt-2 p-2 bg-gray-800 rounded-lg"
-                >
-                  <option value="linear" selected>Linear</option>
-                  <option value="radial">Radial</option>
-                </select>
-              </label>
-              <label class="flex flex-col flex-1">
-                <span class="text-gray-300">Gradient Angle:</span>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="py-20">
+        <div class="container mx-auto text-center">
+          <h2 class="headline text-3xl font-bold mb-8">About Us</h2>
+          <p class="text-xl mb-6">
+            Our library provides a simple and powerful way to create stunning
+            gradients and grain effects for your web projects. Whether you're
+            looking to enhance your designs with custom gradients or add dynamic
+            grain textures, we've got you covered.
+          </p>
+        </div>
+      </section>
+
+      <!-- Try It Section -->
+      <section id="try-it" class="py-20">
+        <div class="container mx-auto text-center px-4">
+          <h2 class="headline text-3xl font-bold mb-8">Try It Yourself</h2>
+          <p class="text-xl mb-6">
+            Experiment with our library and see how it can transform your
+            canvas. Use the interactive controls to customize gradients and
+            grain effects.
+          </p>
+          <div
+            class="canvas-card p-4 rounded-lg shadow-lg mx-auto w-full max-w-4xl"
+          >
+            <!-- Canvas Container -->
+            <div class="w-full flex justify-center items-center mb-6">
+              <div class="canvas-container">
+                <canvas
+                  id="testCanvas"
+                  class="border border-gray-600 rounded-lg"
+                ></canvas>
+              </div>
+            </div>
+            <!-- Settings Container -->
+            <div class="flex flex-col space-y-4">
+              <div
+                class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0"
+              >
+                <label class="flex flex-col flex-1">
+                  <span class="text-gray-100">Gradient Type:</span>
+                  <select
+                    id="gradientType"
+                    class="mt-2 p-2 bg-gray-700 rounded-lg"
+                  >
+                    <option value="linear" selected>Linear</option>
+                    <option value="radial">Radial</option>
+                  </select>
+                </label>
+                <label class="flex flex-col flex-1">
+                  <span class="text-gray-100">Gradient Angle:</span>
+                  <input
+                    type="number"
+                    id="gradientAngle"
+                    min="0"
+                    max="360"
+                    value="45"
+                    class="mt-2 p-2 bg-gray-700 rounded-lg"
+                  />
+                </label>
+              </div>
+              <label class="flex flex-col">
+                <span class="text-gray-100">Grain Intensity:</span>
                 <input
-                  type="number"
-                  id="gradientAngle"
+                  type="range"
+                  id="grainIntensity"
                   min="0"
-                  max="360"
-                  value="45"
-                  class="mt-2 p-2 bg-gray-800 rounded-lg"
+                  max="50"
+                  value="50"
+                  class="mt-2 p-2 bg-gray-700 rounded-lg"
                 />
               </label>
-            </div>
-            <label class="flex flex-col">
-              <span class="text-gray-300">Grain Intensity:</span>
-              <input
-                type="range"
-                id="grainIntensity"
-                min="0"
-                max="50"
-                value="50"
-                class="mt-2 p-2 bg-gray-700 rounded-lg"
-              />
-            </label>
-            <div
-              id="colorContainer"
-              class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-4"
-            >
-              <!-- Color inputs will be added here dynamically -->
-            </div>
-            <div class="flex flex-wrap gap-4 justify-center">
-              <button
-                id="addColorButton"
-                class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg transition duration-300"
+              <div
+                id="colorContainer"
+                class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-4"
               >
-                Add Color
-              </button>
-              <button
-                id="applyButton"
-                class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg transition duration-300"
-              >
-                Apply
-              </button>
-              <button
-                id="randomizeButton"
-                class="bg-purple-500 hover:bg-purple-600 text-white p-2 rounded-lg transition duration-300"
-              >
-                Randomize Settings
-              </button>
+                <!-- Color inputs will be added here dynamically -->
+              </div>
+              <div class="flex flex-wrap gap-4 justify-center">
+                <button
+                  id="addColorButton"
+                  class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg transition duration-300"
+                >
+                  Add Color
+                </button>
+                <button
+                  id="applyButton"
+                  class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg transition duration-300"
+                >
+                  Apply
+                </button>
+                <button
+                  id="randomizeButton"
+                  class="bg-purple-500 hover:bg-purple-600 text-white p-2 rounded-lg transition duration-300"
+                >
+                  Randomize Settings
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 py-6">
-      <div class="container mx-auto text-center text-gray-400">
-        <p>&copy; 2024 ProdByEagle. All rights reserved.</p>
-      </div>
-    </footer>
+      <!-- Footer -->
+      <footer class="py-6">
+        <div class="container mx-auto text-center text-gray-400">
+          <p>&copy; 2024 ProdByEagle. All rights reserved.</p>
+        </div>
+      </footer>
 
     <script src="./site/site.js" type="module"></script>
   </body>

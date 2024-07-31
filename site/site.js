@@ -134,4 +134,47 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   initializeTryItSection(); // Initialize the Try It section with random settings
+
+  // Function to generate random pastel circles as background
+  function generateRandomCircles() {
+    const container = document.getElementById("backgroundCircles");
+
+    for (let i = 0; i < 10; i++) {
+      // Begrenzung auf 10 Kreise
+      const circle = document.createElement("div");
+      const size = Math.random() * 200 + 100; // Größe des Kreises zwischen 100px und 300px
+
+      circle.style.width = `${size}px`;
+      circle.style.height = `${size}px`;
+      circle.style.backgroundColor = getRandomPastelColor();
+      circle.style.top = `${Math.random() * 100}vh`;
+      circle.style.left = `${Math.random() * 100}vw`;
+
+      // Anfangsposition und Transparenz der Kreise
+      circle.style.transform = `translate3d(${Math.random() * 10 - 5}px, ${
+        Math.random() * 10 - 5
+      }px, 0)`;
+      circle.style.transition = "transform 0.5s ease-out"; // Sanfte Übergänge
+
+      container.appendChild(circle);
+    }
+  }
+
+  // Parallax-Effekt beim Scrollen
+  function handleScroll() {
+    const circles = document.querySelectorAll(".background-circles div");
+    circles.forEach((circle) => {
+      const speed = 0.125; // Geschwindigkeit des Parallax-Effekts
+      const yOffset = window.scrollY * speed; // Verwendung von scrollY anstelle von pageYOffset
+
+      // Sanfte Anpassung der y-Position
+      circle.style.transform = `translate3d(${
+        circle.style.transform.split(",")[0].split("(")[1]
+      }, ${yOffset}px, 0)`;
+    });
+  }
+
+  // Initialize background circles and handle scroll event
+  generateRandomCircles();
+  window.addEventListener("scroll", handleScroll);
 });
