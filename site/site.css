@@ -1,0 +1,79 @@
+body {
+  font-family: "Inter", sans-serif;
+  scroll-behavior: smooth; /* This should ensure smooth scrolling */
+  user-select: none;
+}
+
+/* Custom Styles */
+a {
+  text-decoration: none;
+}
+
+.color-picker {
+  position: relative;
+  border-radius: 0.375rem;
+  padding: 0.25rem;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* Vollständige Breite des Containers */
+}
+
+.color-picker input[type="color"] {
+  border: none;
+  padding: 0;
+  width: 100%; /* Breite auf 100% setzen */
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+  appearance: none; /* Verhindert Standard-Stile des Browsers */
+}
+
+.color-picker input[type="color"]::-webkit-color-swatch {
+  border: none; /* Entfernt den Rand des Farbfeldes im Webkit-Browser */
+}
+
+.color-picker .remove-btn {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 1.25rem; /* Kleine Größe für den Button */
+  height: 1.25rem; /* Kleine Größe für den Button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem; /* Kleinere Schriftgröße für das 'x' */
+  color: #ff5353; /* Rote Farbe für das 'x' */
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5); /* Leicht transparentes Hintergrund */
+  border-radius: 50%; /* Runde Form */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Leichter Rand */
+}
+
+.color-picker .remove-btn:hover {
+  background-color: #ff5353; /* Hintergrundfarbe beim Hover */
+  color: #ffffff; /* Textfarbe beim Hover */
+}
+
+/* Glassmorphism Styles */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Light border */
+  backdrop-filter: blur(10px); /* Blur effect */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.canvas-container {
+  position: relative;
+  width: 100%;
+  padding-top: 75%; /* Verhältnis 4:3 für den Canvas */
+}
+
+#testCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
