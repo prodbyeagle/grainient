@@ -160,21 +160,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Parallax-Effekt beim Scrollen
-  function handleScroll() {
-    const circles = document.querySelectorAll(".background-circles div");
-    circles.forEach((circle) => {
-      const speed = 0.125; // Geschwindigkeit des Parallax-Effekts
-      const yOffset = window.scrollY * speed; // Verwendung von scrollY anstelle von pageYOffset
+  // // Parallax-Effekt beim Scrollen
+  // function handleScroll() {
+  //   const circles = document.querySelectorAll(".background-circles div");
+  //   circles.forEach((circle) => {
+  //     const speed = 0.125; // Geschwindigkeit des Parallax-Effekts
+  //     const yOffset = window.scrollY * speed; // Verwendung von scrollY anstelle von pageYOffset
 
-      // Sanfte Anpassung der y-Position
-      circle.style.transform = `translate3d(${
-        circle.style.transform.split(",")[0].split("(")[1]
-      }, ${yOffset}px, 0)`;
-    });
-  }
+  //     // Sanfte Anpassung der y-Position
+  //     circle.style.transform = `translate3d(${
+  //       circle.style.transform.split(",")[0].split("(")[1]
+  //     }, ${yOffset}px, 0)`;
+  //   });
+  // }
 
   // Initialize background circles and handle scroll event
   generateRandomCircles();
-  window.addEventListener("scroll", handleScroll);
+  // window.addEventListener("scroll", handleScroll);
 });
