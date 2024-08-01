@@ -6,4 +6,4 @@
  * @param height - The height of the canvas.
  * @param intensity - The intensity of the grain effect, ranging from 0 (no grain) to 50 (maximum grain).
  */
-export declare function applyGrain(ctx: CanvasRenderingContext2D, width: number, height: number, intensity: number): void;
+export declare function applyGrain(ctx: CanvasRenderingContext2D | null, width: number, height: number, intensity: number): void;
