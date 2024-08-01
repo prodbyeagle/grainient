@@ -80,15 +80,13 @@ document.addEventListener("DOMContentLoaded", () => {
     return container;
   }
 
-  // Funktion zur Aktualisierung des Button-Designs
   function updateButtonStyle(button, isDisabled) {
     if (isDisabled) {
-      button.style.backgroundColor = "#4a5568"; // Dunklerer Hintergrund, wenn deaktiviert
-      button.style.color = "#a0aec0"; // Hellerer Text, wenn deaktiviert
-      button.style.opacity = "0.6"; // Reduziere die Deckkraft
+      button.className =
+        "bg-gray-700 text-white p-2 rounded-lg transition duration-300 opacity-60 cursor-not-allowed"; // Button-Stil für deaktiviert
     } else {
       button.className =
-        "bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg transition duration-300";
+        "bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg transition duration-300"; // Button-Stil für aktiviert
     }
   }
 
@@ -231,20 +229,16 @@ document.addEventListener("DOMContentLoaded", () => {
   generateRandomCircles();
   window.addEventListener("scroll", handleScroll);
 
-  document.getElementById("copyButton").addEventListener("click", () => {
-    // Get the code element
-    const codeElement = document.getElementById("codeBlock");
-    const copyButton = document.getElementById("copyButton");
+  document.getElementById("installCopyButton").addEventListener("click", () => {
+    const codeElement = document.getElementById("installCodeBlock");
+    const copyButton = document.getElementById("installCopyButton");
 
-    // Copy the text content to the clipboards
     navigator.clipboard
       .writeText(codeElement.textContent.trim())
       .then(() => {
-        // Change button text and color
         copyButton.textContent = "Copied!";
         copyButton.disabled = true;
 
-        // Reset button after 3 seconds
         setTimeout(() => {
           copyButton.textContent = "Copy";
           copyButton.disabled = false;
@@ -255,28 +249,23 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 
-  const items = Array.from(document.querySelectorAll(".usage-item"));
-  let currentIndex = 0;
+  document.getElementById("usageCopyButton").addEventListener("click", () => {
+    const codeElement = document.getElementById("usageCodeBlock");
+    const copyButton = document.getElementById("usageCopyButton");
 
-  function showNextItem() {
-    // Verstecke alle Elemente
-    items.forEach((item) => {
-      item.classList.remove("show");
-      item.classList.add("hidden");
-    });
+    navigator.clipboard
+      .writeText(codeElement.textContent.trim())
+      .then(() => {
+        copyButton.textContent = "Copied!";
+        copyButton.disabled = true;
 
-    // Zeige das aktuelle Element an
-    const currentItem = items[currentIndex];
-    currentItem.classList.remove("hidden");
-    currentItem.classList.add("show");
-
-    // Gehe zum nächsten Index
-    currentIndex = (currentIndex + 1) % items.length;
-
-    // Zeige das nächste Element nach einer Verzögerung
-    setTimeout(showNextItem, 3000); // Zeige das nächste Element alle 3 Sekunden
-  }
-
-  // Starte den Zyklus
-  showNextItem();
+        setTimeout(() => {
+          copyButton.textContent = "Copy";
+          copyButton.disabled = false;
+        }, 3000);
+      })
+      .catch((err) => {
+        console.error("Failed to copy text: ", err);
+      });
+  });
 });
