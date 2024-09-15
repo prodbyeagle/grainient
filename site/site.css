@@ -1,4 +1,9 @@
-@import url('../site/assets/fonts/SpaceGrotesk-VariableFont_wght.ttf');
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('../site/assets/fonts/SpaceGrotesk-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
 
 html {
   scroll-behavior: smooth;
