@@ -8,38 +8,27 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./site/site.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
   <style>
     .hljs {
       color: #c9d1d9;
-      /* Helle Textfarbe */
       background: #00000000;
-      /* Dunkler Hintergrund */
       padding: 1rem;
-      /* Innenabstand */
       overflow: auto;
-      /* Scrollen bei Überlauf */
       font-size: 0.975rem;
-      /* Kleinere Schriftgröße für Code */
       line-height: 1.5;
-      /* Zeilenhöhe für besseren Lesefluss */
       word-wrap: break-word;
-      /* Zeilenumbruch bei langen Wörtern */
-      font-family: Fira Mono, monospace;
+      font-family: Geist Mono, monospace;
     }
   </style>
 </head>
 
 <body>
-  <!-- Random Pastel Circles -->
   <div class="background-circles" id="backgroundCircles"></div>
-
-  <!-- Content -->
   <div class="content">
 
-    <!-- Navigation -->
     <header class="header py-4">
       <nav class="container mx-auto flex items-center justify-between">
         <a href="#" class="text-2xl font-bold">grainient</a>
@@ -51,7 +40,6 @@
       </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="py-20">
       <div class="container mx-auto text-center">
         <h1 class="text-6xl font-extrabold my-12">
@@ -66,15 +54,11 @@
         <a href="#try-it"
           class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-6 rounded-lg text-lg transition duration-300">Try
           It Now</a>
-        <!-- <a
-            href="https://www.npmjs.com/package/@prodbyeagle/grainient"
-            class="bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded-lg text-lg transition duration-300"
-            >NPM</a
-          > -->
+        <a href="https://www.npmjs.com/package/@prodbyeagle/grainient"
+          class="bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded-lg text-lg transition duration-300">NPM</a>
       </div>
     </section>
 
-    <!-- Install The Library Section -->
     <section class="py-20">
       <div class="container mx-auto text-center">
         <h2 class="headline text-3xl font-bold mb-8 text-white">Install The Library</h2>
@@ -96,12 +80,10 @@
       </div>
     </section>
 
-    <!-- Features Section -->
     <section id="features" class="py-20">
       <div class="container mx-auto text-center">
         <h2 class="headline text-3xl font-bold mb-8">Features</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-          <!-- Feature 1 -->
           <div class="card p-4 rounded-lg shadow-lg">
             <img src="https://raw.githubusercontent.com/prodbyeagle/grainient/main/site/images/GradientsDemo.png"
               alt="Feature 1" class="w-full h-40 object-cover mb-4 rounded-lg" />
@@ -113,7 +95,6 @@
               designs.
             </p>
           </div>
-          <!-- Feature 2 -->
           <div class="card p-4 rounded-lg shadow-lg">
             <img src="https://raw.githubusercontent.com/prodbyeagle/grainient/main/site/images/GrainDemo.png"
               alt="Feature 2" class="w-full h-40 object-cover mb-4 rounded-lg" />
@@ -127,7 +108,6 @@
       </div>
     </section>
 
-    <!-- Basic Usage Section -->
     <section id="usage" class="py-20">
       <div class="container mx-auto text-center">
         <h2 class="headline text-3xl font-bold mb-8">Basic Usage</h2>
@@ -161,7 +141,6 @@ Gradient(canvas, options);
       </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="py-20">
       <div class="container mx-auto text-center">
         <h2 class="headline text-3xl font-bold mb-8">About Us</h2>
@@ -174,7 +153,6 @@ Gradient(canvas, options);
       </div>
     </section>
 
-    <!-- Try It Section -->
     <section id="try-it" class="py-20">
       <div class="container mx-auto text-center px-4">
         <h2 class="headline text-3xl font-bold mb-8">Try It Yourself</h2>
@@ -184,13 +162,11 @@ Gradient(canvas, options);
           grain effects.
         </p>
         <div class="canvas-card p-4 rounded-lg shadow-lg mx-auto w-full max-w-4xl">
-          <!-- Canvas Container -->
           <div class="w-full flex justify-center items-center mb-6">
             <div class="canvas-container">
               <canvas id="testCanvas" class="border border-gray-600 rounded-lg"></canvas>
             </div>
           </div>
-          <!-- Settings Container -->
           <div class="flex flex-col space-y-4">
             <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
               <label class="flex flex-col flex-1">
@@ -212,7 +188,6 @@ Gradient(canvas, options);
                 class="mt-2 p-2 bg-gray-700 rounded-lg" />
             </label>
             <div id="colorContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-4">
-              <!-- Color inputs will be added here dynamically -->
             </div>
             <div class="flex flex-wrap gap-4 justify-center">
               <button id="addColorButton"
@@ -233,7 +208,6 @@ Gradient(canvas, options);
       </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-6">
       <div class="container mx-auto text-center text-gray-400">
         <p>&copy; 2024 ProdByEagle. All rights reserved.</p>
