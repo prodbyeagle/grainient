@@ -103,6 +103,14 @@ document.addEventListener("DOMContentLoaded", () => {
   updateColorInputLimit();
 
   function applySettings() {
+    const colors = Array.from(
+      colorContainer.querySelectorAll('input[type="color"]')
+    ).map((input) => input.value).filter(Boolean);
+
+    if (colors.length < 2) {
+      return;
+    }
+
     const grainIntensity = parseInt(
       document.getElementById("grainIntensity").value
     );
@@ -110,10 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const gradientAngle = parseInt(
       document.getElementById("gradientAngle").value
     );
-
-    const colors = Array.from(
-      colorContainer.querySelectorAll('input[type="color"]')
-    ).map((input) => input.value);
 
     const gradientOptions = {
       colors: colors,
@@ -147,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const gradientAngle = Math.floor(Math.random() * 91);
     document.getElementById("gradientAngle").value = gradientAngle;
 
-    const numColors = Math.min(Math.floor(Math.random() * 3) + 2, MAX_COLORS);
+    const numColors = Math.min(Math.floor(Math.random() * 4) + 3, MAX_COLORS);
     colorContainer.innerHTML = "";
     for (let i = 0; i < numColors; i++) {
       colorContainer.appendChild(createColorInput());
