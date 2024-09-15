@@ -23,12 +23,12 @@
     "url": "git+https://github.com/prodbyeagle/grainient.git"
   },
   "devDependencies": {
-    "@types/node": "^20.14.12",
-    "ts-loader": "^9.5.1",
-    "typescript": "^5.5.4",
-    "webpack-cli": "^5.1.4"
+    "@types/node": "latest",
+    "ts-loader": "latest",
+    "typescript": "latest",
+    "webpack-cli": "latest"
   },
   "dependencies": {
-    "@prodbyeagle/grainient": "^3.0.1"
+    "@prodbyeagle/grainient": "latest"
   }
 }
