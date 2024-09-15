@@ -1,11 +1,10 @@
-/* Allgemeine Styles */
 html {
   scroll-behavior: smooth;
 }
 
 body {
   font-family: "Inter Tight", sans-serif;
-  scroll-behavior: smooth; /* Dies sollte sanftes Scrollen sicherstellen */
+  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   user-select: none;
@@ -13,31 +12,32 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  background-color: #1a202c; /* Dunkler Hintergrund */
-  color: #e2e8f0; /* Helle Textfarbe */
+  background-color: #1a202c;
+  color: #e2e8f0;
 }
 
-/* Navigation Styles */
+
 .header {
   position: fixed;
-  top: 1rem; /* Abstand vom oberen Rand */
+  top: 1rem;
   left: 50%;
-  transform: translateX(-50%); /* Zentriert die Navigation */
-  width: calc(100% - 2rem); /* Breite anpassen */
-  max-width: 1200px; /* Maximale Breite für große Bildschirme */
-  background-color: rgba(0, 0, 0, 0.5); /* Leicht durchsichtiger Hintergrund */
-  border-radius: 15px; /* Pill-Design */
-  padding: 0.5rem 1rem; /* Innenabstand */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Schatten */
-  backdrop-filter: blur(2rem); /* Blur-Effekt */
+  transform: translateX(-50%);
+  width: calc(100% - 2rem);
+  max-width: 1200px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2rem);
   z-index: 1;
   display: flex;
-  justify-content: center; /* Zentriert die Navigation */
+  justify-content: center;
+
 }
 
 @media (min-width: 1600px) {
   .header {
-    width: calc(45% - 2rem); /* Breite anpassen für große Bildschirme */
+    width: calc(45% - 2rem);
   }
 }
 
@@ -59,7 +59,7 @@ body {
 
 .header ul {
   display: flex;
-  gap: 1rem; /* Abstand zwischen den Links */
+  gap: 1rem;
   list-style-type: none;
 }
 
@@ -67,66 +67,59 @@ body {
   padding: 0.5rem 1rem;
 }
 
-/* Hide navigation links on small screens */
 .nav-links {
   display: flex;
 }
 
-/* Show only the logo on small screens */
 @media (max-width: 900px) {
   .nav-links {
     display: none;
   }
 }
 
-/* Card Styles */
 .card {
-  background: #2d3748; /* Dunkler Kartenhintergrund */
+  background: #2d3748;
   margin-left: 1rem;
   margin-right: 1rem;
-  border: 0.0625rem solid #4a5568; /* Dunkler Rand */
+  border: 0.0625rem solid #4a5568;
   transition: background 0.3s ease, border 0.3s ease;
 }
 
 .canvas-card {
-  background: #2d374877; /* Dunkler Kartenhintergrund */
-  border: 0.0625rem solid #4a5568; /* Dunkler Rand */
+  background: #2d374877;
+  border: 0.0625rem solid #4a5568;
 }
 
 .card:hover {
-  background: #4a5568; /* Hellerer Kartenhintergrund bei Hover */
-  border: 0.0625rem solid #cbd5e0; /* Hellerer Rand bei Hover */
+  background: #4a5568;
+  border: 0.0625rem solid #cbd5e0;
 }
 
-/* Button Styles */
 button {
   transition: background 0.3s ease, border 0.3s ease;
 }
 
 button:hover {
-  background: rgba(255, 255, 255, 0.1); /* Heller Hintergrund bei Hover */
+  background: rgba(255, 255, 255, 0.1);
 }
 
-/* Custom Headline Font */
 .headline {
   font-family: "Inter Tight", sans-serif;
   font-weight: 950;
   font-style: italic;
 }
 
-/* Glassmorphism Styles */
 .glass-card {
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-  border: 0.0625rem solid rgba(255, 255, 255, 0.2); /* Light border */
-  backdrop-filter: blur(5rem); /* Blur effect */
-  box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1); /* Soft shadow */
+  background: rgba(255, 255, 255, 0.1);
+  border: 0.0625rem solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5rem);
+  box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
 }
 
-/* Canvas Container */
 .canvas-container {
   position: relative;
   width: 100%;
-  padding-top: 75%; /* Verhältnis 4:3 für den Canvas */
+  padding-top: 75%;
 }
 
 #testCanvas {
@@ -137,7 +130,6 @@ button:hover {
   height: 100%;
 }
 
-/* Background Circles */
 .background-circles {
   position: fixed;
   top: 0;
@@ -154,32 +146,31 @@ button:hover {
   border-radius: 50%;
   filter: blur(5rem);
   opacity: 0.2;
-  will-change: transform; /* Optimize for smoother animation */
+  will-change: transform;
   transition: transform 0.5s ease;
 }
 
-/* Content Wrapper */
 .content {
   position: relative;
   z-index: 1;
 }
 
 .color-picker input[type="color"] {
-  width: 2.5rem; /* Breite der Farbauswahl */
-  height: 2.5rem; /* Höhe der Farbauswahl */
+  width: 2.5rem;
+  height: 2.5rem;
   border: none;
-  border-radius: 50%; /* Runde Farbauswahl */
+  border-radius: 50%;
   padding: 0;
   cursor: pointer;
 }
 
 .color-picker button {
-  background: #e53e3e; /* Roter Hintergrund für den Remove Button */
+  background: #e53e3e;
   color: white;
   border: none;
   border-radius: 50%;
-  width: 1.5rem; /* Breite des Buttons */
-  height: 1.5rem; /* Höhe des Buttons */
+  width: 1.5rem;
+  height: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -191,10 +182,9 @@ button:hover {
 }
 
 .color-picker button:hover {
-  background: #c53030; /* Dunklerer Rotton bei Hover */
+  background: #c53030;
 }
 
-/* Container für Color Picker Inputs */
 #colorContainer {
   display: flex;
   flex-wrap: wrap;
@@ -202,7 +192,7 @@ button:hover {
 }
 
 button:disabled {
-  background-color: #4a5568; /* Dunklerer Hintergrund, wenn deaktiviert */
-  cursor: not-allowed; /* Zeigt an, dass der Button nicht klickbar ist */
-  opacity: 0.6; /* Reduziere die Deckkraft, um den deaktivierten Zustand anzuzeigen */
+  background-color: #4a5568;
+  cursor: not-allowed;
+  opacity: 0.6;
 }

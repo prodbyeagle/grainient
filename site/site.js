@@ -20,19 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (container) {
       canvas.width = container.clientWidth;
       canvas.height = container.clientHeight;
-      applySettings(); // Reapply settings when resized
+      applySettings();
     } else {
       console.error("Canvas container not found.");
     }
   }
 
-  // Set initial canvas size
   resizeCanvas();
-
-  // Resize canvas when the window is resized
   window.addEventListener("resize", resizeCanvas);
 
-  // Function to generate a random pastel color
   function getRandomPastelColor() {
     const r = Math.floor(Math.random() * 128) + 127;
     const g = Math.floor(Math.random() * 128) + 127;
@@ -42,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
   }
 
-  const MAX_COLORS = 8; // Maximale Anzahl an Farben
+  const MAX_COLORS = 8;
 
   function createColorInput(color = getRandomPastelColor()) {
     const container = document.createElement("div");
@@ -65,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "absolute top-0 right-0 bg-red-500 text-white text-xs p-1 rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600 transition duration-300";
     removeButton.onclick = () => {
       container.remove();
-      updateColorInputLimit(); // Überprüfe, ob noch maximal 8 Farben vorhanden sind
+      updateColorInputLimit();
     };
 
     container.appendChild(colorBox);
@@ -76,17 +72,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const newColor = event.target.value;
       colorBox.style.backgroundColor = newColor;
     });
-
     return container;
   }
 
   function updateButtonStyle(button, isDisabled) {
     if (isDisabled) {
       button.className =
-        "bg-gray-700 text-white p-2 rounded-lg transition duration-300 opacity-60 cursor-not-allowed"; // Button-Stil für deaktiviert
+        "bg-gray-700 text-white p-2 rounded-lg transition duration-300 opacity-60 cursor-not-allowed";
     } else {
       button.className =
-        "bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg transition duration-300"; // Button-Stil für aktiviert
+        "bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg transition duration-300";
     }
   }
 
@@ -97,10 +92,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const addColorButton = document.getElementById("addColorButton");
 
     if (colorInputs.length >= MAX_COLORS) {
-      updateButtonStyle(addColorButton, true); // Button deaktiviert
+      updateButtonStyle(addColorButton, true);
       addColorButton.disabled = true;
     } else {
-      updateButtonStyle(addColorButton, false); // Button aktiviert
+      updateButtonStyle(addColorButton, false);
       addColorButton.disabled = false;
     }
   }
@@ -152,20 +147,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const gradientAngle = Math.floor(Math.random() * 91);
     document.getElementById("gradientAngle").value = gradientAngle;
 
-    const numColors = Math.min(Math.floor(Math.random() * 3) + 2, MAX_COLORS); // Begrenze die Anzahl der Farben auf MAX_COLORS
+    const numColors = Math.min(Math.floor(Math.random() * 3) + 2, MAX_COLORS);
     colorContainer.innerHTML = "";
     for (let i = 0; i < numColors; i++) {
       colorContainer.appendChild(createColorInput());
     }
 
-    updateColorInputLimit(); // Überprüfe, ob das Limit erreicht ist
+    updateColorInputLimit();
 
     applySettings();
   }
 
   function initializeTryItSection() {
-    resizeCanvas(); // Resize canvas on load
-    randomizeSettings(); // Apply random settings on load
+    resizeCanvas();
+    randomizeSettings();
   }
 
   document
@@ -181,19 +176,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (colorInputs.length < MAX_COLORS) {
       colorContainer.appendChild(createColorInput());
     }
-    updateColorInputLimit(); // Überprüfe, ob das Limit erreicht ist
+    updateColorInputLimit();
   });
 
-  initializeTryItSection(); // Initialize the Try It section with random settings
+  initializeTryItSection();
 
-  // Function to generate random pastel circles as background
   function generateRandomCircles() {
     const container = document.getElementById("backgroundCircles");
 
     for (let i = 0; i < 10; i++) {
-      // Begrenzung auf 10 Kreise
+
       const circle = document.createElement("div");
-      const size = Math.random() * 200 + 100; // Größe des Kreises zwischen 100px und 300px
+      const size = Math.random() * 200 + 100;
 
       circle.style.width = `${size}px`;
       circle.style.height = `${size}px`;
@@ -201,31 +195,29 @@ document.addEventListener("DOMContentLoaded", () => {
       circle.style.top = `${Math.random() * 100}vh`;
       circle.style.left = `${Math.random() * 100}vw`;
 
-      // Anfangsposition und Transparenz der Kreise
-      circle.style.transform = `translate3d(${Math.random() * 10 - 5}px, ${
-        Math.random() * 10 - 5
-      }px, 0)`;
-      circle.style.transition = "transform 0.5s ease-out"; // Sanfte Übergänge
+
+      circle.style.transform = `translate3d(${Math.random() * 10 - 5}px, ${Math.random() * 10 - 5
+        }px, 0)`;
+      circle.style.transition = "transform 0.5s ease-out";
 
       container.appendChild(circle);
     }
   }
 
-  // Parallax-Effekt beim Scrollen
+
   function handleScroll() {
     const circles = document.querySelectorAll(".background-circles div");
     circles.forEach((circle) => {
-      const speed = 0.125; // Geschwindigkeit des Parallax-Effekts
-      const yOffset = window.scrollY * speed; // Verwendung von scrollY anstelle von pageYOffset
+      const speed = 0.125;
+      const yOffset = window.scrollY * speed;
 
-      // Sanfte Anpassung der y-Position
-      circle.style.transform = `translate3d(${
-        circle.style.transform.split(",")[0].split("(")[1]
-      }, ${yOffset}px, 0)`;
+
+      circle.style.transform = `translate3d(${circle.style.transform.split(",")[0].split("(")[1]
+        }, ${yOffset}px, 0)`;
     });
   }
 
-  // Initialize background circles and handle scroll event
+
   generateRandomCircles();
   window.addEventListener("scroll", handleScroll);
 
